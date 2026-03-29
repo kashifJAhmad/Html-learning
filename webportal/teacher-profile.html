@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="profile-header">
+        <nav class="profile-nav">
+            <a href="../Index.html" class="nav-btn">Home</a>
+            <a href="#" class="nav-btn">Settings</a>
+            <a href="#" class="nav-btn" id="logoutBtn">Logout</a>
+        </nav>
+        <div class="profile-info">
+            <div class="profile-details">
+                <h1 id="teacherName">Jane Smith</h1>
+                <p><strong>Department:</strong> <span id="teacherDepartment">Computer Science</span></p>
+                <p><strong>Employee ID:</strong> <span id="teacherEmployeeID">T123456</span></p>
+                <p><strong>Qualification:</strong> <span id="teacherQualification">M.Tech</span></p>
+                <p><strong>Email:</strong> <span id="teacherEmail">jane.smith@example.com</span></p>
+                <p><strong>Phone:</strong> <span id="teacherPhone">+1 987 654 3210</span></p>
+                <button id="editBtn" class="btn">Edit Profile</button>
+            </div>
+            <img src="https://via.placeholder.com/150" alt="Teacher Photo" class="profile-image">
+        </div>
+    </header>
+    <main>
+        <div class="options-container">
+            <h2>Teacher Dashboard</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>Teaching Schedule</h3>
+                    <p>View your class timetable</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Class Attendance</h3>
+                    <p>Manage student attendance</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Course Syllabus</h3>
+                    <p>Access and update course plans</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Study Materials</h3>
+                    <p>Upload and share resources</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Assignments</h3>
+                    <p>Assign and review tasks</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Student List</h3>
+                    <p>View enrolled students</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Notices</h3>
+                    <p>Post important announcements</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Grade Book</h3>
+                    <p>Enter and view grades</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Reports</h3>
+                    <p>Generate performance reports</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Library Access</h3>
+                    <p>Manage library resources</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Salary</h3>
+                    <p>View salary details and payslips</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Settings</h3>
+                    <p>Update profile settings</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
+    </footer>
+    <script>
+        // Load teacher data from API
+        const currentUserId = localStorage.getItem('currentUserId');
+        const currentUserRole = localStorage.getItem('currentUserRole');
+        
+        if (currentUserId && currentUserRole === 'teacher') {
+            fetch(`/api/profile/${currentUserId}`)
+                .then(response => response.json())
+                .then(user => {
+                    document.getElementById('teacherName').textContent = user.name;
+                    document.getElementById('teacherDepartment').textContent = user.department || 'N/A';
+                    document.getElementById('teacherEmployeeID').textContent = user.employee_id || 'N/A';
+                    document.getElementById('teacherQualification').textContent = user.qualification || 'N/A';
+                    document.getElementById('teacherEmail').textContent = user.email;
+                    document.getElementById('teacherPhone').textContent = user.phone;
+                })
+                .catch(error => {
+                    console.error('Error fetching profile:', error);
+                    alert('Failed to load profile data.');
+                });
+        } else {
+            // If no data, redirect back to form
+            alert('No registration data found. Please register first.');
+            window.location.href = 'form2.html';
+        }
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentUserId');
+            localStorage.removeItem('currentUserRole');
+            window.location.href = '../Index.html';
+        });
+
+        // Edit profile functionality (simplified for now)
+        document.getElementById('editBtn').addEventListener('click', function() {
+            alert('Edit profile functionality not yet implemented.');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="profile-header">
+        <nav class="profile-nav">
+            <a href="../Index.html" class="nav-btn">Home</a>
+            <a href="#" class="nav-btn">Settings</a>
+            <a href="#" class="nav-btn" id="logoutBtn">Logout</a>
+        </nav>
+        <div class="profile-info">
+            <div class="profile-details">
+                <h1 id="adminName">Admin User</h1>
+                <p><strong>Role:</strong> System Administrator</p>
+                <p><strong>Employee ID:</strong> <span id="adminEmployeeID">A001</span></p>
+                <p><strong>Department:</strong> <span id="adminDepartment">Administration</span></p>
+                <p><strong>Email:</strong> <span id="adminEmail">admin@example.com</span></p>
+                <p><strong>Phone:</strong> <span id="adminPhone">+1 555 123 4567</span></p>
+                <button id="editBtn" class="btn">Edit Profile</button>
+            </div>
+            <img src="https://via.placeholder.com/150" alt="Admin Photo" class="profile-image">
+        </div>
+    </header>
+    <main>
+        <div class="options-container">
+            <h2>Admin Dashboard</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>User Management</h3>
+                    <p>Manage students, teachers, and admins</p>
+                    <a href="#" class="btn" id="userManagementBtn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>System Reports</h3>
+                    <p>View analytics and reports</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Course Management</h3>
+                    <p>Oversee courses and syllabi</p>
+                    <a href="#" class="btn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>Fee Management</h3>
+                    <p>Handle fees and payments</p>
+                    <a href="#" class="btn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>Notices</h3>
+                    <p>Post system-wide announcements</p>
+                    <a href="#" class="btn">Post</a>
+                </div>
+                <div class="option-card">
+                    <h3>Attendance Overview</h3>
+                    <p>Monitor overall attendance</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Library Admin</h3>
+                    <p>Manage library resources</p>
+                    <a href="#" class="btn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>Results & Grades</h3>
+                    <p>Oversee grading system</p>
+                    <a href="#" class="btn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>Backup & Security</h3>
+                    <p>System backups and security</p>
+                    <a href="#" class="btn">Manage</a>
+                </div>
+                <div class="option-card">
+                    <h3>Settings</h3>
+                    <p>System configuration</p>
+                    <a href="#" class="btn">Configure</a>
+                </div>
+                <div class="option-card">
+                    <h3>View Feedbacks</h3>
+                    <p>View user feedbacks</p>
+                    <a href="#" class="btn" id="viewFeedbacksBtn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Logout</h3>
+                    <p>Secure logout</p>
+                    <a href="#" class="btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
+    </footer>
+    <script>
+        // Load admin data from API
+        const currentUserId = localStorage.getItem('currentUserId');
+        const currentUserRole = localStorage.getItem('currentUserRole');
+        
+        if (currentUserId && currentUserRole === 'admin') {
+            fetch(`/api/profile/${currentUserId}`)
+                .then(response => response.json())
+                .then(user => {
+                    document.getElementById('adminName').textContent = user.name;
+                    document.getElementById('adminEmployeeID').textContent = user.employee_id || 'N/A';
+                    document.getElementById('adminDepartment').textContent = user.department || 'N/A';
+                    document.getElementById('adminEmail').textContent = user.email;
+                    document.getElementById('adminPhone').textContent = user.phone;
+                })
+                .catch(error => {
+                    console.error('Error fetching profile:', error);
+                    alert('Failed to load profile data.');
+                });
+        } else {
+            // If no data, redirect back to form
+            alert('No registration data found. Please register first.');
+            window.location.href = 'form3.html';
+        }
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentUserId');
+            localStorage.removeItem('currentUserRole');
+            window.location.href = '../Index.html';
+        });
+
+        // View feedbacks
+        document.getElementById('viewFeedbacksBtn').addEventListener('click', function() {
+            // For now, since feedbacks are not implemented, show a message
+            alert('Feedback system not yet implemented.');
+        });
+
+        // User management - now fetch from database
+        document.getElementById('userManagementBtn').addEventListener('click', function() {
+            // This would need a new API endpoint to fetch all users
+            // For now, show a message
+            alert('User management dashboard not yet implemented. Users are stored in the database.');
+        });
+
+        // Edit profile functionality (simplified for now)
+        document.getElementById('editBtn').addEventListener('click', function() {
+            alert('Edit profile functionality not yet implemented.');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

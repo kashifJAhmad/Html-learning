@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header class="profile-header">
+        <nav class="profile-nav">
+            <a href="../Index.html" class="nav-btn">Home</a>
+            <a href="#" class="nav-btn">Settings</a>
+            <a href="#" class="nav-btn" id="logoutBtn">Logout</a>
+        </nav>
+        <div class="profile-info">
+            <div class="profile-details">
+                <h1 id="studentName">John Doe</h1>
+                <p><strong>Branch:</strong> Computer Science</p>
+                <p><strong>Year:</strong> <span id="studentYear">Third Year (TE)</span></p>
+                <p><strong>Division:</strong> <span id="studentDivision">A</span></p>
+                <p><strong>PRN:</strong> <span id="studentPRN">123456789</span></p>
+                <p><strong>Email:</strong> <span id="studentEmail">john.doe@example.com</span></p>
+                <p><strong>Phone:</strong> <span id="studentPhone">+1 234 567 890</span></p>
+                <button id="editBtn" class="btn">Edit Profile</button>
+            </div>
+            <img src="https://via.placeholder.com/150" alt="Student Photo" class="profile-image">
+        </div>
+    </header>
+    <main>
+        <div class="options-container">
+            <h2>Student Dashboard</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <h3>Timetable</h3>
+                    <p>View your class schedule</p>
+                    <a href="#" class="btn" id="timetableBtn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Attendance</h3>
+                    <p>Check your attendance record</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Course Plan</h3>
+                    <p>Access course syllabus and plans</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Study Material</h3>
+                    <p>Download notes and resources</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Assignments</h3>
+                    <p>Submit and view assignments</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Fees</h3>
+                    <p>Check fee status and payments</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Notices</h3>
+                    <p>Read important announcements</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Certificates</h3>
+                    <p>Download certificates and transcripts</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Results</h3>
+                    <p>View exam results</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Library</h3>
+                    <p>Access library resources</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Hostel</h3>
+                    <p>Manage hostel information</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+                <div class="option-card">
+                    <h3>Settings</h3>
+                    <p>Update profile settings</p>
+                    <a href="#" class="btn">View</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
+    </footer>
+    <script>
+        // Load student data from API
+        const userId = localStorage.getItem('currentUserId');
+        if (!userId) {
+            alert('Please log in first.');
+            window.location.href = '../Index.html';
+            return;
+        }
+
+        async function loadProfile() {
+            try {
+                const response = await fetch(`/api/profile/${userId}`);
+                const result = await response.json();
+                if (response.ok) {
+                    const user = result.user;
+                    document.getElementById('studentName').textContent = user.name;
+                    document.getElementById('studentYear').textContent = user.year;
+                    document.getElementById('studentDivision').textContent = user.division;
+                    document.getElementById('studentPRN').textContent = user.employee_id;
+                    document.getElementById('studentEmail').textContent = user.email;
+                    document.getElementById('studentPhone').textContent = user.phone;
+                } else {
+                    alert('Failed to load profile: ' + result.error);
+                    window.location.href = '../Index.html';
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        loadProfile();
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('currentUserId');
+            localStorage.removeItem('currentUserRole');
+            window.location.href = '../Index.html';
+        });
+
+        // Edit profile functionality
+        document.getElementById('editBtn').addEventListener('click', async function() {
+            const isEditing = this.textContent === 'Save Changes';
+            if (isEditing) {
+                // Save changes
+                const updatedData = {
+                    name: document.getElementById('studentName').textContent,
+                    year: document.getElementById('studentYear').textContent,
+                    division: document.getElementById('studentDivision').textContent,
+                    employee_id: document.getElementById('studentPRN').textContent,
+                    email: document.getElementById('studentEmail').textContent,
+                    phone: document.getElementById('studentPhone').textContent
+                };
+                try {
+                    const response = await fetch(`/api/profile/${userId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(updatedData)
+                    });
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert('Profile updated successfully');
+                        this.textContent = 'Edit Profile';
+                        // Make fields non-editable
+                        document.getElementById('studentName').contentEditable = false;
+                        document.getElementById('studentYear').contentEditable = false;
+                        document.getElementById('studentDivision').contentEditable = false;
+                        document.getElementById('studentPRN').contentEditable = false;
+                        document.getElementById('studentEmail').contentEditable = false;
+                        document.getElementById('studentPhone').contentEditable = false;
+                    } else {
+                        alert('Failed to update profile: ' + result.error);
+                    }
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            } else {
+                // Enter edit mode
+                this.textContent = 'Save Changes';
+                // Make fields editable
+                document.getElementById('studentName').contentEditable = true;
+                document.getElementById('studentYear').contentEditable = true;
+                document.getElementById('studentDivision').contentEditable = true;
+                document.getElementById('studentPRN').contentEditable = true;
+                document.getElementById('studentEmail').contentEditable = true;
+                document.getElementById('studentPhone').contentEditable = true;
+            }
+        });
+
+        // Timetable
+        document.getElementById('timetableBtn').addEventListener('click', function() {
+            const timetable = `
+Monday: Math 9-10, Physics 10-11
+Tuesday: Chemistry 9-10, English 10-11
+Wednesday: Biology 9-10, History 10-11
+Thursday: Math 9-10, Physics 10-11
+Friday: Chemistry 9-10, English 10-11
+            `;
+            alert('Your Timetable:\n' + timetable);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
