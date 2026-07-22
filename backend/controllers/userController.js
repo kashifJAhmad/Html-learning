@@ -16,11 +16,20 @@ exports.register = async (req, res) => {
         department,
         qualification,
         year,
-        division
+        division,
+        access_code
     } = req.body;
 
     try {
 
+        if (role === "admin") {
+            if (access_code !== process.env.ADMIN_ACCESS_CODE) {
+                return res.status(401).json({
+                    success: false,
+                    message: "Invalid Admin Access Code"
+                });
+            }
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const sql = `
@@ -63,7 +72,8 @@ exports.register = async (req, res) => {
 
             res.json({
                 success: true,
-                message: "Registration Successful"
+                message: "Registration Successful",
+                id: result.insertId
             });
 
         });
