@@ -1,10 +1,16 @@
 const mysql = require("mysql2");
 
+console.log("Host:", process.env.DB_HOST);
+console.log("User:", process.env.DB_USER);
+console.log("Password:", JSON.stringify(process.env.DB_PASSWORD));
+console.log("Password Length:", process.env.DB_PASSWORD?.length);
+console.log("Database:", process.env.DB_NAME);
+
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: "localhost",
+    user: "root",
+    password: "Kashif@8668",
+    database: "student_tracker"
 });
 
 connection.connect((err) => {
