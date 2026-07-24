@@ -98,55 +98,56 @@
         <p>&copy; 2026 Student Tracker. All rights reserved.</p>
     </footer>
     <script>
-        // Load admin data from API
-        const currentUserId = localStorage.getItem('currentUserId');
-        const currentUserRole = localStorage.getItem('currentUserRole');
-        
-        if (currentUserId && currentUserRole === 'admin') {
-            fetch(`/api/profile/${currentUserId}`)
-                .then(response => response.json())
-                .then(user => {
-                    document.getElementById('adminName').textContent = user.name;
-                    document.getElementById('adminEmployeeID').textContent = user.employee_id || 'N/A';
-                    document.getElementById('adminDepartment').textContent = user.department || 'N/A';
-                    document.getElementById('adminEmail').textContent = user.email;
-                    document.getElementById('adminPhone').textContent = user.phone;
-                })
-                .catch(error => {
-                    console.error('Error fetching profile:', error);
-                    alert('Failed to load profile data.');
-                });
+       document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const access_code = document.getElementById("access_code").value;
+
+    try {
+
+        const response = await fetch("http://localhost:5000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password,
+                access_code
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            // Save token if backend returns one
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+            }
+
+            // Save logged-in user
+            if (data.user) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+            }
+
+            alert("Admin Login Successful!");
+
+            // Redirect to Admin Profile
+            window.location.href = "../admin-profile.html";
+
         } else {
-            // If no data, redirect back to form
-            alert('No registration data found. Please register first.');
-            window.location.href = 'form3.html';
+            alert(data.message);
         }
 
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            localStorage.removeItem('currentUserId');
-            localStorage.removeItem('currentUserRole');
-            window.location.href = '../Index.html';
-        });
+    } catch (err) {
+        console.error(err);
+        alert("Unable to connect to server.");
+    }
 
-        // View feedbacks
-        document.getElementById('viewFeedbacksBtn').addEventListener('click', function() {
-            // For now, since feedbacks are not implemented, show a message
-            alert('Feedback system not yet implemented.');
-        });
-
-        // User management - now fetch from database
-        document.getElementById('userManagementBtn').addEventListener('click', function() {
-            // This would need a new API endpoint to fetch all users
-            // For now, show a message
-            alert('User management dashboard not yet implemented. Users are stored in the database.');
-        });
-
-        // Edit profile functionality (simplified for now)
-        document.getElementById('editBtn').addEventListener('click', function() {
-            alert('Edit profile functionality not yet implemented.');
-        });
+});
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 </html>

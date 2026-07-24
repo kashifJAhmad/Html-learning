@@ -15,7 +15,7 @@
         <p>Please fill in your details to register as an administrator.</p>
     </header>
     <main class="container my-5">
-        <form class="row g-3 registration-form">
+        <form action="" class="row g-3 registration-form">
             <div class="col-md-6">
                 <label for="name" class="form-label">Full Name:</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name"
@@ -76,7 +76,9 @@
                     placeholder="Enter admin access code" required>
             </div>
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary">Register as Admin</button>
+                <button type="submit" class="btn btn-primary">
+                    Register as Admin
+                </button>
             </div>
         </form>
     </main>
@@ -156,7 +158,7 @@
 
 
             try {
-                const response = await fetch("http://localhost:3000/api/register", {
+                const response = await fetch("http://localhost:5000/api/register", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -171,7 +173,7 @@
                     localStorage.setItem("currentUserId", result.id);
                     localStorage.setItem("currentUserRole", "admin");
 
-                    window.location.href = "admin-profile.html";
+                    window.location.href = "Login_form/Admin_login.html";
 
                 } else {
 
