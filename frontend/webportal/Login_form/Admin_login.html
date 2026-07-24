@@ -79,77 +79,84 @@
 
     </div>
 
-    <script>
-        document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
+    
 
-            e.preventDefault();
+</body>
+<script>
+document.getElementById("adminLoginForm").addEventListener("submit", async function (e) {
 
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            const access_code = document.getElementById("access_code").value.trim();
+    e.preventDefault();
 
-            const message = document.getElementById("message");
-            message.innerHTML = "";
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const access_code = document.getElementById("access_code").value.trim();
 
-            try {
+    const message = document.getElementById("message");
+    message.innerHTML = "";
 
-                const response = await fetch("http://localhost:5000/api/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email,
-                        password,
-                        access_code
-                    })
-                });
+    try {
 
-                const data = await response.json();
+        const response = await fetch("http://localhost:5000/api/login", {
 
-                if (response.ok && data.success) {
+            method: "POST",
 
-                    // Save login details
-                    localStorage.setItem("token", data.token);
-                    localStorage.setItem("currentUserId", data.user.id);
-                    localStorage.setItem("currentUserRole", data.user.role);
-                    localStorage.setItem("currentUser", JSON.stringify(data.user));
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                    message.innerHTML = `
+            body: JSON.stringify({
+                email,
+                password,
+                access_code
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+
+            // Save Login Information
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("currentUser", JSON.stringify(data.user));
+            localStorage.setItem("currentUserId", data.user.id);
+            localStorage.setItem("currentUserRole", data.user.role);
+
+            message.innerHTML = `
                 <div class="alert alert-success">
-                    ${data.message}
+                    Login Successful! Redirecting...
                 </div>
             `;
 
-                    // Redirect to Admin Dashboard
-                    setTimeout(() => {
-                        window.location.href = "../admin-profile.html";
-                    }, 1000);
+            setTimeout(() => {
 
-                } else {
+                window.location.href = "../admin-profile.html";
 
-                    message.innerHTML = `
+            }, 1000);
+
+        } else {
+
+            message.innerHTML = `
                 <div class="alert alert-danger">
                     ${data.message}
                 </div>
             `;
 
-                }
+        }
 
-            } catch (error) {
+    } catch (error) {
 
-                console.error(error);
+        console.error(error);
 
-                message.innerHTML = `
+        message.innerHTML = `
             <div class="alert alert-danger">
-                Unable to connect to the server.
+                Unable to connect to server.
             </div>
         `;
-            }
 
-        });
-    </script>
+    }
 
-</body>
+});
+</script>
 
 </html>

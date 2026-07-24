@@ -1,118 +1,782 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Tracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Student Tracker | Smart Academic Management</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header class="bg-primary text-white text-center py-5">
-        <h1>Welcome to Student Tracker</h1>
-        <p>For Registration, choose your profession</p>
-    </header>
-    <main class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow">
-                    <div class="card-body text-center">
-                        <img src="https://thumbs.dreamstime.com/b/student-icon-vector-graduation-mortar-board-school-college-university-glyph-pictogram-male-person-profile-avatar-108392101.jpg" alt="Student Icon" class="mb-3" style="width: 100px;">
-                        <h2 class="card-title">Student</h2>
-                        <p class="card-text">Register as a student to access your profile and resources.</p>
-                        <a href="webportal/form1.html" class="btn btn-success me-2">Register as Student</a>
-                        <button class="btn btn-outline-primary login-btn" data-type="student">Login as Student</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow">
-                    <div class="card-body text-center">
-                        <img src="https://thumbs.dreamstime.com/b/teacher-icon-vector-male-person-profile-avatar-education-school-college-university-glyph-pictogram-108392102.jpg" alt="Teacher Icon" class="mb-3" style="width: 100px;">
-                        <h2 class="card-title">Teacher</h2>
-                        <p class="card-text">Register as a teacher to manage classes and students.</p>
-                        <a href="webportal/form2.html" class="btn btn-success me-2">Register as Teacher</a>
-                        <button class="btn btn-outline-primary login-btn" data-type="teacher">Login as Teacher</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow">
-                    <div class="card-body text-center">
-                        <img src="https://thumbs.dreamstime.com/b/admin-icon-vector-male-person-profile-avatar-administrator-glyph-pictogram-108392103.jpg" alt="Admin Icon" class="mb-3" style="width: 100px;">
-                        <h2 class="card-title">Administrator</h2>
-                        <p class="card-text">Access administrative tools and manage the system.</p>
-                        <a href="webportal/form3.html" class="btn btn-success me-2">Register as Admin</a>
-                        <button class="btn btn-outline-primary login-btn" data-type="admin">Login as Admin</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
-        <form class="feedback-form w-50 mx-auto">
-            <div class="mb-3">
-                <textarea name="feedback" class="form-control" placeholder="Provide your feedback here..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Feedback</button>
-        </form>
-    </footer>
-    <script>
-        document.querySelector('.feedback-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const feedback = event.target.feedback.value.trim();
-            if (!feedback) {
-                alert('Please enter your feedback.');
-                return;
-            }
-            
-            // Store feedback in localStorage (append to array)
-            let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
-            feedbacks.push({ feedback: feedback, date: new Date().toISOString() });
-            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
-            
-            alert('Thank you for your feedback!');
-            event.target.reset();
-        });
 
-        // Login functionality
-        document.querySelectorAll('.login-btn').forEach(btn => {
-            btn.addEventListener('click', async function() {
-                const type = this.dataset.type;
-                const email = prompt(`Enter your email to login:`);
-                if (!email) return;
-                const password = prompt('Enter your password:');
-                if (!password) return;
-                
-                try {
-                    const response = await fetch('/api/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email, password })
-                    });
-                    const result = await response.json();
-                    if (response.ok) {
-                        const user = result.user;
-                        if (user.role === type) {
-                            localStorage.setItem('currentUserId', user.id);
-                            localStorage.setItem('currentUserRole', user.role);
-                            window.location.href = `webportal/${type}-profile.html`;
-                        } else {
-                            alert('Invalid role for this login type.');
-                        }
-                    } else {
-                        alert('Login failed: ' + result.error);
-                    }
-                } catch (error) {
-                    alert('Error: ' + error.message);
-                }
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold fs-3 text-primary" href="#">
+
+<i class="fa-solid fa-graduation-cap me-2"></i>
+
+Student Tracker
+
+</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse"
+data-bs-target="#navbarNav">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse justify-content-end"
+id="navbarNav">
+
+<ul class="navbar-nav align-items-center">
+
+<li class="nav-item">
+
+<a class="nav-link active" href="#">Home</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#features">Features</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#roles">Portal</a>
+
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link" href="#feedback">Feedback</a>
+
+</li>
+
+<li class="nav-item ms-3">
+
+<a class="btn btn-primary px-4 rounded-pill"
+href="#roles">
+
+Get Started
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<span class="badge bg-primary px-3 py-2 mb-3">
+
+Academic Management System
+
+</span>
+
+<h1 class="display-3 fw-bold">
+
+Manage Students
+
+<br>
+
+<span class="text-primary">
+
+Smarter & Faster
+
+</span>
+
+</h1>
+
+<p class="lead mt-4 text-muted">
+
+A professional student management portal designed for
+
+Students,
+
+Teachers,
+
+and
+
+Administrators.
+
+Register, manage academic records, monitor attendance,
+
+and access all educational services from one platform.
+
+</p>
+
+<div class="mt-5">
+
+<a href="#roles"
+
+class="btn btn-primary btn-lg rounded-pill px-5 me-3">
+
+<i class="fa-solid fa-user-plus me-2"></i>
+
+Register
+
+</a>
+
+<a href="#features"
+
+class="btn btn-outline-dark btn-lg rounded-pill px-5">
+
+Learn More
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-6 text-center">
+
+<img
+
+src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+
+class="img-fluid hero-image"
+
+width="420">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section id="features" class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+
+Why Choose Student Tracker?
+
+</h2>
+
+<p class="text-muted">
+
+Everything required to manage academic activities.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-user-graduate"></i>
+
+<h5>Students</h5>
+
+<p>
+
+Personal profile,
+
+attendance,
+
+results,
+
+assignments,
+
+resources.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-chalkboard-user"></i>
+
+<h5>Teachers</h5>
+
+<p>
+
+Manage students,
+
+upload marks,
+
+attendance,
+
+study materials.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h5>Administrator</h5>
+
+<p>
+
+Manage users,
+
+departments,
+
+records,
+
+and reports.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-box">
+
+<i class="fa-solid fa-chart-column"></i>
+
+<h5>Analytics</h5>
+
+<p>
+
+Powerful dashboard,
+
+statistics,
+
+reports,
+
+and performance tracking.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= ROLE CARDS ================= -->
+
+<section id="roles" class="py-5">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+
+Choose Your Portal
+
+</h2>
+
+<p class="text-muted">
+
+Select your role to register or login.
+
+</p>
+
+</div>
+
+<div class="row g-4">
+    <!-- ================= STUDENT CARD ================= -->
+
+<div class="col-lg-4 col-md-6">
+
+    <div class="role-card">
+
+        <div class="role-icon student">
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+        </div>
+
+        <h3>Student Portal</h3>
+
+        <p>
+            Register to access your profile, attendance,
+            results, study material, notices and academic resources.
+        </p>
+
+        <div class="d-grid gap-2 mt-4">
+
+            <a href="webportal/Register_forms/form1.html"
+                class="btn btn-success">
+
+                <i class="fa-solid fa-user-plus me-2"></i>
+
+                Register
+
+            </a>
+
+            <a href="webportal/Login_form/Student_login.html"
+                class="btn btn-outline-success">
+
+                <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= TEACHER CARD ================= -->
+
+<div class="col-lg-4 col-md-6">
+
+    <div class="role-card">
+
+        <div class="role-icon teacher">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+        </div>
+
+        <h3>Teacher Portal</h3>
+
+        <p>
+
+            Manage attendance,
+
+            upload marks,
+
+            share study materials,
+
+            monitor classroom activities.
+
+        </p>
+
+        <div class="d-grid gap-2 mt-4">
+
+            <a href="webportal/Register_forms/form2.html"
+
+                class="btn btn-warning text-white">
+
+                <i class="fa-solid fa-user-plus me-2"></i>
+
+                Register
+
+            </a>
+
+            <a href="webportal/Login_form/Teacher_login.html"
+
+                class="btn btn-outline-warning">
+
+                <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= ADMIN CARD ================= -->
+
+<div class="col-lg-4 col-md-6">
+
+    <div class="role-card">
+
+        <div class="role-icon admin">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+        </div>
+
+        <h3>Administrator Portal</h3>
+
+        <p>
+
+            Control the entire system,
+
+            manage users,
+
+            departments,
+
+            reports,
+
+            analytics and settings.
+
+        </p>
+
+        <div class="d-grid gap-2 mt-4">
+
+            <a href="webportal/Register_forms/form3.html"
+
+                class="btn btn-primary">
+
+                <i class="fa-solid fa-user-plus me-2"></i>
+
+                Register
+
+            </a>
+
+            <a href="webportal/Login_form/Admin_login.html"
+
+                class="btn btn-outline-primary">
+
+                <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats-section py-5">
+
+<div class="container">
+
+<div class="row text-center">
+
+    <div class="col-md-3 mb-4">
+        <div class="stats-box">
+            <h2>500+</h2>
+            <p>Registered Students</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="stats-box">
+            <h2>50+</h2>
+            <p>Faculty Members</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="stats-box">
+            <h2>15+</h2>
+            <p>Departments</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-4">
+        <div class="stats-box">
+            <h2>98%</h2>
+            <p>Attendance Accuracy</p>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= FEEDBACK ================= -->
+
+<section id="feedback" class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg border-0 rounded-4">
+
+                    <div class="card-body p-5">
+
+                        <div class="text-center mb-4">
+
+                            <h2 class="fw-bold">
+                                We Value Your Feedback
+                            </h2>
+
+                            <p class="text-muted">
+                                Help us improve Student Tracker by sharing your suggestions.
+                            </p>
+
+                        </div>
+
+                        <form id="feedbackForm">
+
+                            <div class="mb-3">
+
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    id="name"
+                                    placeholder="Your Name"
+                                    required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <input
+                                    type="email"
+                                    class="form-control form-control-lg"
+                                    id="email"
+                                    placeholder="Email Address"
+                                    required>
+
+                            </div>
+
+                            <div class="mb-3">
+
+                                <textarea
+                                    id="feedbackText"
+                                    class="form-control form-control-lg"
+                                    rows="5"
+                                    placeholder="Write your feedback..."
+                                    required></textarea>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg w-100 rounded-pill">
+
+                                <i class="fa-solid fa-paper-plane me-2"></i>
+
+                                Submit Feedback
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="bg-dark text-white pt-5 pb-3">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+
+                <h4 class="fw-bold">
+
+                    <i class="fa-solid fa-graduation-cap me-2"></i>
+
+                    Student Tracker
+
+                </h4>
+
+                <p class="mt-3">
+
+                    A smart academic management portal for Students,
+                    Teachers and Administrators.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <h5>Quick Links</h5>
+
+                <ul class="list-unstyled">
+
+                    <li><a href="#" class="text-decoration-none text-light">Home</a></li>
+
+                    <li><a href="#features" class="text-decoration-none text-light">Features</a></li>
+
+                    <li><a href="#roles" class="text-decoration-none text-light">Portal</a></li>
+
+                    <li><a href="#feedback" class="text-decoration-none text-light">Feedback</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5>Contact</h5>
+
+                <p>
+
+                    <i class="fa-solid fa-envelope me-2"></i>
+
+                    support@studenttracker.com
+
+                </p>
+
+                <p>
+
+                    <i class="fa-solid fa-phone me-2"></i>
+
+                    +91 9876543210
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-3">
+
+                <h5>Follow Us</h5>
+
+                <div class="fs-3">
+
+                    <a href="#" class="text-light me-3">
+
+                        <i class="fab fa-facebook"></i>
+
+                    </a>
+
+                    <a href="#" class="text-light me-3">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#" class="text-light me-3">
+
+                        <i class="fab fa-linkedin"></i>
+
+                    </a>
+
+                    <a href="#" class="text-light">
+
+                        <i class="fab fa-github"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+
+            © 2026 Student Tracker | Designed by Kashif Ahmad
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+const feedbackForm = document.getElementById("feedbackForm");
+
+feedbackForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const feedback = {
+
+        name: document.getElementById("name").value,
+
+        email: document.getElementById("email").value,
+
+        message: document.getElementById("feedbackText").value,
+
+        date: new Date().toLocaleString()
+
+    };
+
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+
+    feedbacks.push(feedback);
+
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+
+    alert("Thank you for your feedback!");
+
+    feedbackForm.reset();
+
+});
+
+</script>
+
 </body>
+
 </html>

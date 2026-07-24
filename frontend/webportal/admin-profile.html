@@ -1,153 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Student Tracker | Admin Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Global CSS -->
     <link rel="stylesheet" href="../style.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="admin-profile.css">
 </head>
+
 <body>
-    <header class="profile-header">
-        <nav class="profile-nav">
-            <a href="../Index.html" class="nav-btn">Home</a>
-            <a href="#" class="nav-btn">Settings</a>
-            <a href="#" class="nav-btn" id="logoutBtn">Logout</a>
-        </nav>
-        <div class="profile-info">
-            <div class="profile-details">
-                <h1 id="adminName">Admin User</h1>
-                <p><strong>Role:</strong> System Administrator</p>
-                <p><strong>Employee ID:</strong> <span id="adminEmployeeID">A001</span></p>
-                <p><strong>Department:</strong> <span id="adminDepartment">Administration</span></p>
-                <p><strong>Email:</strong> <span id="adminEmail">admin@example.com</span></p>
-                <p><strong>Phone:</strong> <span id="adminPhone">+1 555 123 4567</span></p>
-                <button id="editBtn" class="btn">Edit Profile</button>
-            </div>
-            <img src="https://via.placeholder.com/150" alt="Admin Photo" class="profile-image">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="bi bi-mortarboard-fill"></i>
+
+            <span>Student Tracker</span>
+
         </div>
-    </header>
-    <main>
-        <div class="options-container">
-            <h2>Admin Dashboard</h2>
-            <div class="options-grid">
-                <div class="option-card">
-                    <h3>User Management</h3>
-                    <p>Manage students, teachers, and admins</p>
-                    <a href="#" class="btn" id="userManagementBtn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>System Reports</h3>
-                    <p>View analytics and reports</p>
-                    <a href="#" class="btn">View</a>
-                </div>
-                <div class="option-card">
-                    <h3>Course Management</h3>
-                    <p>Oversee courses and syllabi</p>
-                    <a href="#" class="btn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>Fee Management</h3>
-                    <p>Handle fees and payments</p>
-                    <a href="#" class="btn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>Notices</h3>
-                    <p>Post system-wide announcements</p>
-                    <a href="#" class="btn">Post</a>
-                </div>
-                <div class="option-card">
-                    <h3>Attendance Overview</h3>
-                    <p>Monitor overall attendance</p>
-                    <a href="#" class="btn">View</a>
-                </div>
-                <div class="option-card">
-                    <h3>Library Admin</h3>
-                    <p>Manage library resources</p>
-                    <a href="#" class="btn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>Results & Grades</h3>
-                    <p>Oversee grading system</p>
-                    <a href="#" class="btn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>Backup & Security</h3>
-                    <p>System backups and security</p>
-                    <a href="#" class="btn">Manage</a>
-                </div>
-                <div class="option-card">
-                    <h3>Settings</h3>
-                    <p>System configuration</p>
-                    <a href="#" class="btn">Configure</a>
-                </div>
-                <div class="option-card">
-                    <h3>View Feedbacks</h3>
-                    <p>View user feedbacks</p>
-                    <a href="#" class="btn" id="viewFeedbacksBtn">View</a>
-                </div>
-                <div class="option-card">
-                    <h3>Logout</h3>
-                    <p>Secure logout</p>
-                    <a href="#" class="btn">Logout</a>
-                </div>
+
+        <ul>
+
+            <li class="active">
+                <a href="#">
+                    <i class="bi bi-grid-fill"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-people-fill"></i>
+                    Students
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-person-workspace"></i>
+                    Teachers
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-building"></i>
+                    Departments
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                    Courses
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-calendar-check-fill"></i>
+                    Attendance
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-cash-stack"></i>
+                    Fee Management
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Reports
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    Feedback
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="bi bi-gear-fill"></i>
+                    Settings
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="logoutBtn">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Navbar -->
+        <header class="topbar">
+
+            <div>
+                <h3>Admin Dashboard</h3>
+                <p>Manage your Student Tracker System</p>
             </div>
-        </div>
+
+            <div class="topbar-right">
+
+                <button class="icon-btn">
+                    <i class="bi bi-bell-fill"></i>
+                </button>
+
+                <button class="icon-btn">
+                    <i class="bi bi-gear-fill"></i>
+                </button>
+
+                <div class="admin-mini-profile">
+
+                    <img src="https://ui-avatars.com/api/?name=Tony+Stark&background=2563eb&color=fff"
+                        id="adminAvatar">
+
+                    <div>
+
+                        <h6 id="adminMiniName">Tony Stark</h6>
+
+                        <small>Administrator</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Welcome -->
+        <section class="welcome-section">
+
+            <div>
+
+                <h2 id="welcomeName">Welcome Back, Tony Stark 👋</h2>
+
+                <p>
+                    Here's what's happening in your institution today.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-grid">
+
+            <div class="dashboard-card">
+
+                <i class="bi bi-people-fill"></i>
+
+                <h2 id="studentCount">1250</h2>
+
+                <p>Total Students</p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <i class="bi bi-person-workspace"></i>
+
+                <h2 id="teacherCount">85</h2>
+
+                <p>Total Teachers</p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <i class="bi bi-building"></i>
+
+                <h2 id="departmentCount">18</h2>
+
+                <p>Departments</p>
+
+            </div>
+
+            <div class="dashboard-card">
+
+                <i class="bi bi-calendar-check-fill"></i>
+
+                <h2>96%</h2>
+
+                <p>Attendance</p>
+
+            </div>
+
+        </section>
+
+        <!-- Dashboard Row -->
+        <section class="dashboard-row">
+
+            <!-- Profile Card -->
+
+            <div class="profile-card">
+
+                <div class="profile-top">
+
+                    <img src="https://ui-avatars.com/api/?name=Tony+Stark&background=2563eb&color=fff"
+                        id="profileImage">
+
+                    <h3 id="adminName">
+                        Tony Stark
+                    </h3>
+
+                    <span class="badge bg-success">
+                        Active
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <div class="profile-info">
+
+                    <p>
+
+                        <strong>Email</strong>
+
+                        <span id="adminEmail">
+                            tony.stark@starkindustries.com
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Phone</strong>
+
+                        <span id="adminPhone">
+                            9876543210
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Employee ID</strong>
+
+                        <span id="adminEmployeeID">
+                            STK0001
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Department</strong>
+
+                        <span id="adminDepartment">
+                            Information Technology
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Role</strong>
+
+                        <span id="adminRole">
+                            Administrator
+                        </span>
+
+                    </p>
+
+                </div>
+
+                <button class="btn btn-primary w-100 mt-3">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Edit Profile
+
+                </button>
+
+            </div>
+
+            <!-- Recent Activities -->
+
+            <div class="activity-card">
+
+                <h4>
+
+                    <i class="bi bi-clock-history"></i>
+
+                    Recent Activity
+
+                </h4>
+
+                <ul>
+
+                    <li>✅ Student Rahul Patil registered.</li>
+
+                    <li>✅ Teacher account created.</li>
+
+                    <li>✅ Attendance updated.</li>
+
+                    <li>✅ New course added.</li>
+
+                    <li>✅ Department information updated.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- Quick Actions -->
+
+        <section class="quick-actions">
+
+            <h3>Quick Actions</h3>
+
+            <div class="action-grid">
+
+                <button class="action-btn">
+
+                    <i class="bi bi-person-plus-fill"></i>
+
+                    Add Student
+
+                </button>
+
+                <button class="action-btn">
+
+                    <i class="bi bi-person-workspace"></i>
+
+                    Add Teacher
+
+                </button>
+
+                <button class="action-btn">
+
+                    <i class="bi bi-building-add"></i>
+
+                    Add Department
+
+                </button>
+
+                <button class="action-btn">
+
+                    <i class="bi bi-file-earmark-bar-graph-fill"></i>
+
+                    Generate Report
+
+                </button>
+
+                <button class="action-btn">
+
+                    <i class="bi bi-chat-left-text-fill"></i>
+
+                    View Feedback
+
+                </button>
+
+                <button class="action-btn">
+
+                    <i class="bi bi-gear-fill"></i>
+
+                    System Settings
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+
+            © 2026 Student Tracker | Admin Panel
+
+        </footer>
+
     </main>
-    <footer>
-        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
-    </footer>
-    <script>
-       document.getElementById("adminLoginForm").addEventListener("submit", async (e) => {
 
-    e.preventDefault();
+    <script src="admin-profile.js"></script>
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const access_code = document.getElementById("access_code").value;
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!token || !user) {
+
+        window.location.href = "Login_form/Admin_login.html";
+        return;
+
+    }
 
     try {
 
-        const response = await fetch("http://localhost:5000/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email,
-                password,
-                access_code
-            })
-        });
+        document.getElementById("adminName").textContent = user.name;
+        document.getElementById("welcomeName").textContent =
+            `Welcome Back, ${user.name} 👋`;
 
-        const data = await response.json();
+        document.getElementById("adminMiniName").textContent = user.name;
+        document.getElementById("adminEmail").textContent = user.email;
+        document.getElementById("adminPhone").textContent = user.phone;
+        document.getElementById("adminDepartment").textContent = user.department;
+        document.getElementById("adminEmployeeID").textContent = user.employee_id;
+        document.getElementById("adminRole").textContent = user.role;
 
-        if (response.ok) {
+        const avatar =
+            `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563eb&color=ffffff&size=200`;
 
-            // Save token if backend returns one
-            if (data.token) {
-                localStorage.setItem("token", data.token);
-            }
-
-            // Save logged-in user
-            if (data.user) {
-                localStorage.setItem("user", JSON.stringify(data.user));
-            }
-
-            alert("Admin Login Successful!");
-
-            // Redirect to Admin Profile
-            window.location.href = "../admin-profile.html";
-
-        } else {
-            alert(data.message);
-        }
+        document.getElementById("profileImage").src = avatar;
+        document.getElementById("adminAvatar").src = avatar;
 
     } catch (err) {
+
         console.error(err);
-        alert("Unable to connect to server.");
+
+        alert("Unable to load profile.");
+
     }
 
+    document.getElementById("logoutBtn").addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        if (confirm("Logout?")) {
+
+            localStorage.clear();
+
+            window.location.href = "Login_form/Admin_login.html";
+
+        }
+
+    });
+
 });
-    </script>
+</script>
+
 </html>

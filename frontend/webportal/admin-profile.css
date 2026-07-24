@@ -1,0 +1,1221 @@
+/* ==========================================
+   STUDENT TRACKER - ADMIN DASHBOARD
+   Part 2A
+   Global | Sidebar | Topbar | Layout
+========================================== */
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --secondary:#0f172a;
+
+    --background:#f5f7fb;
+    --white:#ffffff;
+
+    --success:#22c55e;
+    --danger:#ef4444;
+    --warning:#f59e0b;
+
+    --text:#1e293b;
+    --text-light:#64748b;
+
+    --border:#e2e8f0;
+
+    --shadow:
+        0 10px 30px rgba(0,0,0,.08);
+
+    --transition:.35s ease;
+
+    --sidebar-width:270px;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Poppins",sans-serif;
+    background:var(--background);
+    color:var(--text);
+
+}
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:var(--sidebar-width);
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color:#fff;
+
+    padding:25px;
+
+    overflow-y:auto;
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:24px;
+    font-weight:700;
+
+    margin-bottom:40px;
+
+}
+
+.logo i{
+
+    color:#60a5fa;
+    font-size:30px;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+.sidebar ul li{
+
+    margin-bottom:10px;
+
+}
+
+.sidebar ul li a{
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    transition:var(--transition);
+
+    font-size:15px;
+
+}
+
+.sidebar ul li a i{
+
+    font-size:20px;
+
+}
+
+.sidebar ul li a:hover{
+
+    background:rgba(255,255,255,.12);
+
+    color:#fff;
+
+    transform:translateX(8px);
+
+}
+
+.sidebar ul li.active a{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    box-shadow:0 10px 20px rgba(37,99,235,.35);
+
+}
+
+/* ==============================
+   MAIN CONTENT
+============================== */
+
+.main-content{
+
+    margin-left:var(--sidebar-width);
+
+    min-height:100vh;
+
+    padding:30px;
+
+}
+
+/* ==============================
+   TOPBAR
+============================== */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#fff;
+
+    padding:20px 30px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:35px;
+
+}
+
+.topbar h3{
+
+    font-size:28px;
+    font-weight:700;
+
+}
+
+.topbar p{
+
+    color:var(--text-light);
+
+    margin-top:5px;
+
+}
+
+.topbar-right{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+}
+
+/* ==============================
+   ICON BUTTONS
+============================== */
+
+.icon-btn{
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    background:#eef2ff;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.icon-btn i{
+
+    color:var(--primary);
+
+    font-size:20px;
+
+}
+
+.icon-btn:hover{
+
+    background:var(--primary);
+
+    transform:translateY(-3px);
+
+}
+
+.icon-btn:hover i{
+
+    color:#fff;
+
+}
+
+/* ==============================
+   MINI PROFILE
+============================== */
+
+.admin-mini-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    background:#f8fafc;
+
+    padding:8px 16px;
+
+    border-radius:50px;
+
+}
+
+.admin-mini-profile img{
+
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid var(--primary);
+
+}
+
+.admin-mini-profile h6{
+
+    margin:0;
+
+    font-weight:600;
+
+}
+
+.admin-mini-profile small{
+
+    color:var(--text-light);
+
+}
+
+/* ==============================
+   WELCOME SECTION
+============================== */
+
+.welcome-section{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.welcome-section h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.welcome-section p{
+
+    color:var(--text-light);
+
+    margin-top:8px;
+
+}
+
+/* ==============================
+   SECTION TITLES
+============================== */
+
+section h3,
+section h4{
+
+    font-weight:700;
+
+}
+
+/* ==============================
+   SCROLLBAR
+============================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#94a3b8;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#e2e8f0;
+
+}
+/* ==========================================
+   PART 2B
+   Statistics | Profile | Activity
+==========================================*/
+
+/* ==============================
+   STATS GRID
+============================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+/* ==============================
+   DASHBOARD CARD
+============================== */
+
+.dashboard-card{
+
+    background:var(--white);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        #60a5fa
+    );
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+
+}
+
+.dashboard-card i{
+
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:#eff6ff;
+
+    color:var(--primary);
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-card h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.dashboard-card p{
+
+    color:var(--text-light);
+
+    margin:0;
+
+    font-size:15px;
+
+}
+
+/* ==============================
+   DASHBOARD ROW
+============================== */
+
+.dashboard-row{
+
+    display:grid;
+
+    grid-template-columns:340px 1fr;
+
+    gap:30px;
+
+    margin-bottom:35px;
+
+}
+
+/* ==============================
+   PROFILE CARD
+============================== */
+
+.profile-card{
+
+    background:var(--white);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.profile-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.profile-top{
+
+    text-align:center;
+
+}
+
+.profile-top img{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.profile-top h3{
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.profile-card hr{
+
+    margin:25px 0;
+
+    border-color:var(--border);
+
+}
+
+/* ==============================
+   PROFILE DETAILS
+============================== */
+
+.profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.profile-info p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:0;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.profile-info strong{
+
+    color:var(--secondary);
+
+    font-weight:600;
+
+}
+
+.profile-info span{
+
+    color:var(--text-light);
+
+    text-align:right;
+
+}
+
+.profile-card .btn{
+
+    border-radius:12px;
+
+    padding:12px;
+
+    font-weight:600;
+
+}
+
+/* ==============================
+   ACTIVITY CARD
+============================== */
+
+.activity-card{
+
+    background:var(--white);
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.activity-card h4{
+
+    margin-bottom:30px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.activity-card h4 i{
+
+    color:var(--primary);
+
+}
+
+.activity-card ul{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.activity-card li{
+
+    position:relative;
+
+    padding:18px 0 18px 30px;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--text);
+
+}
+
+.activity-card li:last-child{
+
+    border-bottom:none;
+
+}
+
+.activity-card li::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:6px;
+
+    top:25px;
+
+    width:10px;
+
+    height:10px;
+
+    background:var(--primary);
+
+    border-radius:50%;
+
+    box-shadow:0 0 0 5px rgba(37,99,235,.15);
+
+}
+
+/* ==============================
+   STATUS BADGES
+============================== */
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+}
+
+/* ==============================
+   HOVER EFFECTS
+============================== */
+
+.dashboard-card,
+.profile-card,
+.activity-card{
+
+    transition:all .35s ease;
+
+}
+
+.profile-card:hover,
+.activity-card:hover{
+
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+
+}
+
+/* ==============================
+   BUTTON EFFECT
+============================== */
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+/* ==========================================
+   PART 2C
+   Quick Actions | Footer | Responsive
+==========================================*/
+
+/* ==============================
+   QUICK ACTIONS
+============================== */
+
+.quick-actions{
+
+    margin-top:35px;
+
+}
+
+.quick-actions h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+.action-btn{
+
+    background:var(--white);
+
+    border:none;
+
+    border-radius:22px;
+
+    padding:28px 20px;
+
+    cursor:pointer;
+
+    box-shadow:var(--shadow);
+
+    transition:all .35s ease;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.action-btn i{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:30px;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    transition:.35s;
+
+}
+
+.action-btn:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.18);
+
+}
+
+.action-btn:hover i{
+
+    transform:rotate(10deg) scale(1.08);
+
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+.dashboard-footer{
+
+    margin-top:50px;
+
+    text-align:center;
+
+    padding:25px;
+
+    background:var(--white);
+
+    border-radius:20px;
+
+    color:var(--text-light);
+
+    box-shadow:var(--shadow);
+
+    font-size:15px;
+
+}
+
+/* ==============================
+   LINK RESET
+============================== */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+/* ==============================
+   BUTTON ANIMATION
+============================== */
+
+button{
+
+    transition:.3s ease;
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+/* ==============================
+   CARD ANIMATION
+============================== */
+
+.dashboard-card,
+.profile-card,
+.activity-card,
+.action-btn{
+
+    animation:fadeUp .6s ease forwards;
+
+}
+
+/* ==============================
+   KEYFRAMES
+============================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.05);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==============================
+   PROFILE IMAGE
+============================== */
+
+.profile-top img:hover{
+
+    animation:pulse .6s;
+
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:1200px){
+
+.dashboard-row{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+.sidebar{
+
+    width:85px;
+
+    padding:20px 10px;
+
+}
+
+.logo span{
+
+    display:none;
+
+}
+
+.sidebar ul li a{
+
+    justify-content:center;
+
+}
+
+.sidebar ul li a span{
+
+    display:none;
+
+}
+
+.sidebar ul li a i{
+
+    margin:0;
+
+}
+
+.main-content{
+
+    margin-left:85px;
+
+}
+
+.topbar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+.topbar-right{
+
+    width:100%;
+
+    justify-content:space-between;
+
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.main-content{
+
+    padding:20px;
+
+}
+
+.stats-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.action-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.welcome-section{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+.welcome-section h2{
+
+    font-size:28px;
+
+}
+
+.admin-mini-profile{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.profile-info p{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:6px;
+
+}
+
+}
+
+/* Small Mobile */
+
+@media(max-width:576px){
+
+.sidebar{
+
+    position:fixed;
+
+    left:-270px;
+
+    transition:.4s;
+
+}
+
+.sidebar.show{
+
+    left:0;
+
+}
+
+.main-content{
+
+    margin-left:0;
+
+}
+
+.topbar{
+
+    padding:18px;
+
+}
+
+.dashboard-card{
+
+    padding:22px;
+
+}
+
+.profile-card{
+
+    padding:22px;
+
+}
+
+.activity-card{
+
+    padding:22px;
+
+}
+
+.action-btn{
+
+    padding:22px;
+
+}
+
+.dashboard-footer{
+
+    font-size:14px;
+
+}
+
+}
+
+/* ==============================
+   SELECTION
+============================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+/* ==============================
+   FOCUS
+============================== */
+
+button:focus,
+a:focus{
+
+    outline:none;
+
+}
+
+/* ==============================
+   END OF FILE
+============================== */
