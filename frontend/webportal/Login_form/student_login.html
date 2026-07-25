@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | Student Tracker</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="C:\Users\newuser123\OneDrive\Documents\GitHub\Html-learning\frontend\style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold text-primary" href="../index.html">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                Student Tracker
+
+            </a>
+
+            <a href="student_register.html" class="btn btn-outline-primary">
+
+                Register
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- Login Section -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10">
+
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                        <div class="row g-0">
+
+                            <!-- Left Side -->
+
+                            <div class="col-lg-5 bg-primary text-white d-flex align-items-center">
+
+                                <div class="p-5 text-center w-100">
+
+                                    <i class="fa-solid fa-user-graduate display-1 mb-4"></i>
+
+                                    <h2 class="fw-bold">
+
+                                        Welcome Back
+
+                                    </h2>
+
+                                    <p class="mt-3">
+
+                                        Login to access your attendance,
+                                        assignments, profile, dashboard,
+                                        notices and academic records.
+
+                                    </p>
+
+                                    <img src="https://static.vecteezy.com/system/resources/thumbnails/007/469/004/small/graduated-student-in-simple-flat-personal-profile-icon-or-symbol-people-concept-illustration-vector.jpg"
+                                        class="img-fluid mt-4" alt="Student Login">
+
+                                </div>
+
+                            </div>
+
+                            <!-- Right Side -->
+
+                            <div class="col-lg-7 bg-white">
+
+                                <div class="p-5">
+
+                                    <h2 class="fw-bold mb-2">
+
+                                        Student Login
+
+                                    </h2>
+
+                                    <p class="text-muted mb-4">
+
+                                        Enter your registered email and password.
+
+                                    </p>
+
+                                    <form id="studentLoginForm">
+
+                                        <!-- Email -->
+
+                                        <div class="mb-4">
+
+                                            <label class="form-label">
+
+                                                Email Address
+
+                                            </label>
+
+                                            <div class="input-group">
+
+                                                <span class="input-group-text">
+
+                                                    <i class="fa-solid fa-envelope"></i>
+
+                                                </span>
+
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="example@email.com" required>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Password -->
+
+                                        <div class="mb-3">
+
+                                            <label class="form-label">
+
+                                                Password
+
+                                            </label>
+
+                                            <div class="input-group">
+
+                                                <span class="input-group-text">
+
+                                                    <i class="fa-solid fa-lock"></i>
+
+                                                </span>
+
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password" placeholder="Enter Password" required>
+
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                    id="togglePassword">
+
+                                                    <i class="fa-solid fa-eye"></i>
+
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Remember Me -->
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                            <div class="form-check">
+
+                                                <input class="form-check-input" type="checkbox" id="rememberMe">
+
+                                                <label class="form-check-label" for="rememberMe">
+
+                                                    Remember Me
+
+                                                </label>
+
+                                            </div>
+
+                                            <a href="#" class="text-decoration-none">
+
+                                                Forgot Password?
+
+                                            </a>
+
+                                        </div>
+
+                                        <!-- Alert -->
+
+                                        <div id="messageBox"></div>
+
+                                        <!-- Login Button -->
+
+                                        <button type="submit" id="loginBtn" class="btn btn-primary w-100">
+
+                                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                                            Login
+
+                                        </button>
+
+                                        <!-- Register -->
+
+                                        <div class="text-center mt-4">
+
+                                            Don't have an account?
+
+                                            <a href="student_register.html" class="fw-bold">
+
+                                                Register Here
+
+                                            </a>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        /* ======================================================
+       Student Login - Part 2A
+       Validation & UI
+    ====================================================== */
+
+        const form = document.getElementById("studentLoginForm");
+
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+
+        const togglePassword = document.getElementById("togglePassword");
+
+        const loginBtn = document.getElementById("loginBtn");
+
+        const messageBox = document.getElementById("messageBox");
+
+        const rememberMe = document.getElementById("rememberMe");
+
+        /* ======================================================
+            Bootstrap Alert
+        ====================================================== */
+
+        function showAlert(message, type = "danger") {
+
+            messageBox.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show">
+
+            ${message}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    `;
+
+        }
+
+        /* ======================================================
+            Email Validation
+        ====================================================== */
+
+        function validateEmail(value) {
+
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+        }
+
+        email.addEventListener("keyup", () => {
+
+            if (email.value === "") {
+
+                email.classList.remove("is-valid", "is-invalid");
+
+                return;
+
+            }
+
+            if (validateEmail(email.value.trim())) {
+
+                email.classList.add("is-valid");
+                email.classList.remove("is-invalid");
+
+            } else {
+
+                email.classList.add("is-invalid");
+                email.classList.remove("is-valid");
+
+            }
+
+        });
+
+        /* ======================================================
+            Password Validation
+        ====================================================== */
+
+        password.addEventListener("keyup", () => {
+
+            if (password.value.length >= 8) {
+
+                password.classList.add("is-valid");
+                password.classList.remove("is-invalid");
+
+            } else {
+
+                password.classList.add("is-invalid");
+                password.classList.remove("is-valid");
+
+            }
+
+        });
+
+        /* ======================================================
+            Show / Hide Password
+        ====================================================== */
+
+        togglePassword.addEventListener("click", () => {
+
+            const icon = togglePassword.querySelector("i");
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+
+            } else {
+
+                password.type = "password";
+
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+
+            }
+
+        });
+
+        /* ======================================================
+            Auto Lowercase Email
+        ====================================================== */
+
+        email.addEventListener("blur", () => {
+
+            email.value = email.value.trim().toLowerCase();
+
+        });
+
+        /* ======================================================
+            Remove Alert While Typing
+        ====================================================== */
+
+        document.querySelectorAll("input").forEach(input => {
+
+            input.addEventListener("input", () => {
+
+                messageBox.innerHTML = "";
+
+            });
+
+        });
+
+        /* ======================================================
+            Focus First Field
+        ====================================================== */
+
+        window.onload = () => {
+
+            email.focus();
+
+        };
+
+        /* ======================================================
+            Enter Key Support
+        ====================================================== */
+
+        document.addEventListener("keypress", function (e) {
+
+            if (e.key === "Enter") {
+
+                form.requestSubmit();
+
+            }
+
+        });
+
+        /* ======================================================
+            Remember Me
+        ====================================================== */
+
+        window.addEventListener("load", () => {
+
+            const savedEmail = localStorage.getItem("rememberEmail");
+
+            if (savedEmail) {
+
+                email.value = savedEmail;
+
+                rememberMe.checked = true;
+
+            }
+
+        });
+        /* ======================================================
+           Student Login - Part 2B
+           Login API & Authentication
+        ====================================================== */
+
+        form.addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            messageBox.innerHTML = "";
+
+            /* ===============================
+                Final Validation
+            =============================== */
+
+            if (!validateEmail(email.value.trim())) {
+
+                return showAlert("Please enter a valid email address.");
+
+            }
+
+            if (password.value.length < 8) {
+
+                return showAlert("Password must contain at least 8 characters.");
+
+            }
+
+            /* ===============================
+                Loading Button
+            =============================== */
+
+            loginBtn.disabled = true;
+
+            loginBtn.innerHTML = `
+        <span class="spinner-border spinner-border-sm me-2"></span>
+        Logging In...
+    `;
+
+            /* ===============================
+                Remember Me
+            =============================== */
+
+            if (rememberMe.checked) {
+
+                localStorage.setItem(
+                    "rememberEmail",
+                    email.value.trim().toLowerCase()
+                );
+
+            } else {
+
+                localStorage.removeItem("rememberEmail");
+
+            }
+
+            /* ===============================
+                Login Data
+            =============================== */
+
+            const loginData = {
+
+                email: email.value.trim().toLowerCase(),
+
+                password: password.value
+
+            };
+
+            try {
+
+                /* ===============================
+                    API Request
+                =============================== */
+
+                const response = await fetch(
+                    "http://localhost:5000/api/login",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type": "application/json"
+
+                        },
+
+                        body: JSON.stringify(loginData)
+
+                    }
+
+                );
+
+                const responseText = await response.text();
+
+                console.log("Status:", response.status);
+                console.log("Response:", responseText);
+
+                let result = {};
+
+                try {
+                    result = JSON.parse(responseText);
+                } catch (err) {
+                    console.error("Invalid JSON returned by server:", responseText);
+                    showAlert("Server returned an invalid response.");
+                    return;
+                }
+
+                /* ===============================
+                    Login Success
+                =============================== */
+
+                if (response.ok) {
+
+                    /* Student Role Check */
+
+                    if (result.user.role !== "student") {
+
+                        showAlert(
+                            "Access denied. Student account required."
+                        );
+
+                        return;
+
+                    }
+
+                    /* Save Login Details */
+
+                    localStorage.setItem(
+                        "token",
+                        result.token
+                    );
+
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify(result.user)
+                    );
+
+                    localStorage.setItem(
+                        "currentUserId",
+                        result.user.id
+                    );
+
+                    showAlert(
+                        "🎉 Login Successful! Redirecting...",
+                        "success"
+                    );
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "../student-dashboard.html";
+
+                    }, 1500);
+                }
+                /* ===============================
+                    Login Failed
+                =============================== */
+
+                else {
+
+                    showAlert(
+
+                        result.message ||
+
+                        "Invalid Email or Password."
+
+                    );
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error("Fetch Error:", error);
+
+                showAlert(error.message);
+
+            }
+            finally {
+
+                loginBtn.disabled = false;
+
+                loginBtn.innerHTML = `
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            Login
+
+        `;
+
+            }
+
+        });
+    </script>
+</body>
+
+</html>

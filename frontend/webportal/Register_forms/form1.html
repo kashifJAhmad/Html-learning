@@ -4,184 +4,988 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Student Registration | Student Tracker</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
-    <header class="bg-primary text-white text-center py-4">
-        <h1>Student Registration</h1>
-        <p>Please fill in your details to register.</p>
-    </header>
-    <main class="container my-5">
-        <form class="row g-3 registration-form">
-            <div class="col-md-6">
-                <label for="name" class="form-label">Full Name:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name"
-                    required>
-            </div>
-            <div class="col-md-6">
-                <label for="dob" class="form-label">Date of Birth:</label>
-                <input type="date" class="form-control" id="dob" name="dob" required>
-            </div>
-            <div class="col-md-6">
-                <label for="prn" class="form-label">PRN (Permanent Registration Number):</label>
-                <input type="text" class="form-control" id="prn" name="prn" placeholder="Enter your PRN" required>
-            </div>
-            <div class="col-md-6">
-                <label for="email" class="form-label">Email Address:</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-                    required>
-            </div>
-            <div class="col-md-6">
-                <label for="phone" class="form-label">Phone Number:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number"
-                    required>
-            </div>
-            <div class="col-md-6">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password"
-                    placeholder="Enter your password" required>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label">Gender:</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="male" name="gender" value="Male" required>
-                    <label class="form-check-label" for="male">Male</label>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand text-primary fw-bold" href="#">
+                Student Tracker
+            </a>
+
+            <a href="student_login.html" class="btn btn-outline-primary">
+                Login
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- Registration Section -->
+
+    <section class="py-5">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10">
+
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                        <div class="row g-0">
+
+                            <!-- Left Side -->
+
+                            <div class="col-lg-5 bg-primary text-white d-flex align-items-center">
+
+                                <div class="p-5 w-100 text-center">
+
+                                    <i class="fas fa-user-graduate display-1 mb-4"></i>
+
+                                    <h2 class="fw-bold mb-3">
+                                        Welcome Student
+                                    </h2>
+
+                                    <p class="mb-4">
+
+                                        Register yourself to access attendance,
+                                        assignments, notices, dashboard,
+                                        and academic records.
+
+                                    </p>
+
+                                    <img src="https://static.vecteezy.com/system/resources/thumbnails/007/469/004/small/graduated-student-in-simple-flat-personal-profile-icon-or-symbol-people-concept-illustration-vector.jpg"
+                                        class="img-fluid"
+                                        alt="Student">
+
+                                </div>
+
+                            </div>
+
+                            <!-- Right Side -->
+
+                            <div class="col-lg-7 bg-white">
+
+                                <div class="p-5">
+
+                                    <h2 class="fw-bold mb-2">
+                                        Create Student Account
+                                    </h2>
+
+                                    <p class="text-muted mb-4">
+
+                                        Fill in the information below.
+
+                                    </p>
+
+                                    <form id="studentRegisterForm">
+
+                                        <!-- Personal Information -->
+
+                                        <h5 class="mb-3 text-primary">
+
+                                            Personal Information
+
+                                        </h5>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Full Name
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    placeholder="Enter full name"
+                                                    class="form-control"
+                                                    required>
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Date of Birth
+                                                </label>
+
+                                                <input
+                                                    type="date"
+                                                    class="form-control"
+                                                    id="dob">
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Gender
+                                                </label>
+
+                                                <select
+                                                    class="form-select"
+                                                    id="gender">
+
+                                                    <option value="">
+                                                        Select Gender
+                                                    </option>
+
+                                                    <option>
+                                                        Male
+                                                    </option>
+
+                                                    <option>
+                                                        Female
+                                                    </option>
+
+                                                    <option>
+                                                        Other
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    PRN Number
+                                                </label>
+
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="prn"
+                                                    placeholder="PRN Number">
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+
+                                        <!-- Academic Information -->
+
+                                        <h5 class="mb-3 text-primary">
+
+                                            Academic Information
+
+                                        </h5>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Department
+                                                </label>
+
+                                                <select
+                                                    class="form-select"
+                                                    id="department">
+
+                                                    <option value="">
+                                                        Select Department
+                                                    </option>
+
+                                                    <option>
+                                                        Computer Engineering
+                                                    </option>
+
+                                                    <option>
+                                                        Information Technology
+                                                    </option>
+
+                                                    <option>
+                                                        AI & DS
+                                                    </option>
+
+                                                    <option>
+                                                        Mechanical Engineering
+                                                    </option>
+
+                                                    <option>
+                                                        Civil Engineering
+                                                    </option>
+
+                                                    <option>
+                                                        ENTC
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="col-md-3 mb-3">
+
+                                                <label class="form-label">
+                                                    Year
+                                                </label>
+
+                                                <select
+                                                    class="form-select"
+                                                    id="year">
+
+                                                    <option value="">
+                                                        Year
+                                                    </option>
+
+                                                    <option>
+                                                        FE
+                                                    </option>
+
+                                                    <option>
+                                                        SE
+                                                    </option>
+
+                                                    <option>
+                                                        TE
+                                                    </option>
+
+                                                    <option>
+                                                        BE
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="col-md-3 mb-3">
+
+                                                <label class="form-label">
+                                                    Division
+                                                </label>
+
+                                                <select
+                                                    class="form-select"
+                                                    id="division">
+
+                                                    <option value="">
+                                                        Division
+                                                    </option>
+
+                                                    <option>
+                                                        A
+                                                    </option>
+
+                                                    <option>
+                                                        B
+                                                    </option>
+
+                                                    <option>
+                                                        C
+                                                    </option>
+
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+
+                                        <!-- Contact Information -->
+
+                                        <h5 class="mb-3 text-primary">
+
+                                            Contact Information
+
+                                        </h5>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Email Address
+                                                </label>
+
+                                                <input
+                                                    type="email"
+                                                    class="form-control"
+                                                    id="email"
+                                                    placeholder="example@email.com">
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Phone Number
+                                                </label>
+
+                                                <input
+                                                    type="tel"
+                                                    class="form-control"
+                                                    id="phone"
+                                                    placeholder="10-digit Mobile Number">
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+
+                                        <!-- Account Information -->
+
+                                        <h5 class="mb-3 text-primary">
+
+                                            Account Information
+
+                                        </h5>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Password
+                                                </label>
+
+                                                <div class="input-group">
+
+                                                    <input
+                                                        type="password"
+                                                        class="form-control"
+                                                        id="password"
+                                                        placeholder="Create Password">
+
+                                                    <button
+                                                        class="btn btn-outline-secondary"
+                                                        type="button"
+                                                        id="togglePassword">
+
+                                                        <i class="fa-solid fa-eye"></i>
+
+                                                    </button>
+
+                                                </div>
+
+                                                <div
+                                                    id="passwordStrength"
+                                                    class="small mt-2">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <label class="form-label">
+                                                    Confirm Password
+                                                </label>
+
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    id="confirmPassword"
+                                                    placeholder="Confirm Password">
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Terms -->
+
+                                        <div class="form-check my-3">
+
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                id="terms">
+
+                                            <label
+                                                class="form-check-label"
+                                                for="terms">
+
+                                                I agree to the
+                                                <a href="#">
+                                                    Terms &
+                                                    Conditions
+                                                </a>
+
+                                            </label>
+
+                                        </div>
+
+                                        <!-- Alerts -->
+
+                                        <div id="messageBox"></div>
+
+                                        <!-- Button -->
+
+                                        <button
+                                            type="submit"
+                                            id="registerBtn"
+                                            class="btn btn-primary w-100">
+
+                                            <i class="fa-solid fa-user-plus"></i>
+
+                                            Register Now
+
+                                        </button>
+
+                                        <div class="text-center mt-4">
+
+                                            Already have an account?
+
+                                            <a
+                                                href="student_login.html"
+                                                class="fw-bold">
+
+                                                Login Here
+
+                                            </a>
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="female" name="gender" value="Female">
-                    <label class="form-check-label" for="female">Female</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="other" name="gender" value="Other">
-                    <label class="form-check-label" for="other">Other</label>
-                </div>
+
             </div>
-            <div class="col-md-6">
-                <label for="year" class="form-label">Year:</label>
-                <select class="form-select" id="year" name="year" required>
-                    <option value="">Select Year</option>
-                    <option value="FE">First Year (FE)</option>
-                    <option value="SE">Second Year (SE)</option>
-                    <option value="TE">Third Year (TE)</option>
-                    <option value="BE">Fourth Year (BE)</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="division" class="form-label">Division:</label>
-                <select class="form-select" id="division" name="division" required>
-                    <option value="">Select Division</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                </select>
-            </div>
-            <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-        </form>
-    </main>
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2026 Student Tracker. All rights reserved.</p>
-    </footer>
-    <script>
-        document.querySelector('.registration-form').addEventListener('submit', async function (event) {
-            event.preventDefault();
 
-            // Get form data
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
+        </div>
 
-            // Basic validation
-            let isValid = true;
-            let errors = [];
+    </section>
 
-            if (!data.name.trim()) {
-                errors.push('Full Name is required');
-                isValid = false;
-            }
-            if (!data.dob) {
-                errors.push('Date of Birth is required');
-                isValid = false;
-            }
-            if (!data.prn.trim()) {
-                errors.push('PRN is required');
-                isValid = false;
-            }
-            if (!data.email.trim() || !/\S+@\S+\.\S+/.test(data.email)) {
-                errors.push('Valid Email is required');
-                isValid = false;
-            }
-            if (!data.phone.trim() || !/^\d{10}$/.test(data.phone)) {
-                errors.push('Valid 10-digit Phone Number is required');
-                isValid = false;
-            }
-            if (!data.password.trim()) {
-                errors.push('Password is required');
-                isValid = false;
-            }
-            if (!data.gender) {
-                errors.push('Gender is required');
-                isValid = false;
-            }
-            if (!data.year) {
-                errors.push('Year is required');
-                isValid = false;
-            }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-            if (!isValid) {
-                alert('Please fix the following errors:\n' + errors.join('\n'));
-                return;
-            }
-
-            // Prepare data for API
-            const apiData = {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                phone: data.phone,
-                dob: data.dob,
-                gender: data.gender,
-                role: "student",
-                employee_id: data.prn,
-                department: null,
-                qualification: null,
-                year: data.year,
-                division: data.division
-            };
-            try {
-                const response = await fetch("http://localhost:3000/api/register", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(apiData)
-                });
-                const result = await response.json();
-                if (result.success) {
-
-                    alert("Registration Successful!");
-
-                    localStorage.setItem("currentUserId", result.id);
-                    localStorage.setItem("currentUserRole", "student");
-
-                    window.location.href = "student-profile.html";
-
-                } else {
-
-                    alert(result.message || "Registration Failed");
-
-                }
-            } catch (error) {
-                alert('Error: ' + error.message);
-            }
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-
-    </script>
 </body>
+<script>
+/* ======================================================
+   Student Registration - Part 2A
+   Validation & UI
+====================================================== */
 
+const form = document.getElementById("studentRegisterForm");
+
+const name = document.getElementById("name");
+const dob = document.getElementById("dob");
+const gender = document.getElementById("gender");
+const prn = document.getElementById("prn");
+
+const department = document.getElementById("department");
+const year = document.getElementById("year");
+const division = document.getElementById("division");
+
+const email = document.getElementById("email");
+const phone = document.getElementById("phone");
+
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
+
+const passwordStrength = document.getElementById("passwordStrength");
+
+const togglePassword = document.getElementById("togglePassword");
+
+const registerBtn = document.getElementById("registerBtn");
+
+const messageBox = document.getElementById("messageBox");
+
+/* ======================================================
+    Bootstrap Alert
+====================================================== */
+
+function showAlert(message, type = "danger") {
+
+    messageBox.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show">
+
+            ${message}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+    `;
+
+}
+
+/* ======================================================
+    Email Validation
+====================================================== */
+
+function validateEmail(value) {
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+}
+
+email.addEventListener("keyup", () => {
+
+    if (email.value === "") {
+
+        email.classList.remove("is-valid", "is-invalid");
+
+        return;
+
+    }
+
+    if (validateEmail(email.value)) {
+
+        email.classList.add("is-valid");
+
+        email.classList.remove("is-invalid");
+
+    } else {
+
+        email.classList.add("is-invalid");
+
+        email.classList.remove("is-valid");
+
+    }
+
+});
+
+/* ======================================================
+    Phone Validation
+====================================================== */
+
+phone.addEventListener("input", () => {
+
+    phone.value = phone.value.replace(/\D/g, "");
+
+    if (phone.value.length > 10)
+        phone.value = phone.value.slice(0, 10);
+
+    if (phone.value.length === 10) {
+
+        phone.classList.add("is-valid");
+
+        phone.classList.remove("is-invalid");
+
+    } else {
+
+        phone.classList.add("is-invalid");
+
+        phone.classList.remove("is-valid");
+
+    }
+
+});
+
+/* ======================================================
+    PRN Validation
+====================================================== */
+
+prn.addEventListener("keyup", () => {
+
+    if (prn.value.length >= 8) {
+
+        prn.classList.add("is-valid");
+
+        prn.classList.remove("is-invalid");
+
+    } else {
+
+        prn.classList.add("is-invalid");
+
+        prn.classList.remove("is-valid");
+
+    }
+
+});
+
+/* ======================================================
+    Password Show Hide
+====================================================== */
+
+togglePassword.addEventListener("click", () => {
+
+    const icon = togglePassword.querySelector("i");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove("fa-eye");
+
+        icon.classList.add("fa-eye-slash");
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+
+        icon.classList.add("fa-eye");
+
+    }
+
+});
+
+/* ======================================================
+    Password Strength
+====================================================== */
+
+password.addEventListener("keyup", () => {
+
+    let strength = 0;
+
+    const value = password.value;
+
+    if (value.length >= 8)
+        strength++;
+
+    if (/[A-Z]/.test(value))
+        strength++;
+
+    if (/[a-z]/.test(value))
+        strength++;
+
+    if (/[0-9]/.test(value))
+        strength++;
+
+    if (/[^A-Za-z0-9]/.test(value))
+        strength++;
+
+    switch (strength) {
+
+        case 0:
+        case 1:
+
+            passwordStrength.innerHTML =
+                "<span class='text-danger'>Weak Password</span>";
+
+            break;
+
+        case 2:
+        case 3:
+
+            passwordStrength.innerHTML =
+                "<span class='text-warning'>Medium Password</span>";
+
+            break;
+
+        case 4:
+        case 5:
+
+            passwordStrength.innerHTML =
+                "<span class='text-success'>Strong Password</span>";
+
+            break;
+
+    }
+
+});
+
+/* ======================================================
+    Confirm Password
+====================================================== */
+
+confirmPassword.addEventListener("keyup", () => {
+
+    if (confirmPassword.value === "") {
+
+        confirmPassword.classList.remove("is-valid", "is-invalid");
+
+        return;
+
+    }
+
+    if (password.value === confirmPassword.value) {
+
+        confirmPassword.classList.add("is-valid");
+
+        confirmPassword.classList.remove("is-invalid");
+
+    } else {
+
+        confirmPassword.classList.add("is-invalid");
+
+        confirmPassword.classList.remove("is-valid");
+
+    }
+
+});
+
+/* ======================================================
+    DOB Validation
+====================================================== */
+
+dob.addEventListener("change", () => {
+
+    const selected = new Date(dob.value);
+
+    const today = new Date();
+
+    if (selected > today) {
+
+        showAlert("Date of Birth cannot be in the future.");
+
+        dob.value = "";
+
+        return;
+
+    }
+
+});
+
+/* ======================================================
+    Name Validation
+====================================================== */
+
+name.addEventListener("keyup", () => {
+
+    if (name.value.trim().length >= 3) {
+
+        name.classList.add("is-valid");
+
+        name.classList.remove("is-invalid");
+
+    } else {
+
+        name.classList.add("is-invalid");
+
+        name.classList.remove("is-valid");
+
+    }
+
+});
+
+/* ======================================================
+    Remove Alerts while typing
+====================================================== */
+
+document.querySelectorAll("input,select").forEach(field => {
+
+    field.addEventListener("input", () => {
+
+        messageBox.innerHTML = "";
+
+    });
+
+});
+/* ======================================================
+   Student Registration - Part 2B
+   Form Submission & API
+====================================================== */
+
+form.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    messageBox.innerHTML = "";
+
+    /* ===============================
+        Final Validation
+    =============================== */
+
+    if (name.value.trim().length < 3)
+        return showAlert("Please enter a valid full name.");
+
+    if (!validateEmail(email.value))
+        return showAlert("Please enter a valid email address.");
+
+    if (phone.value.length !== 10)
+        return showAlert("Phone number must be exactly 10 digits.");
+
+    if (prn.value.trim().length < 8)
+        return showAlert("Please enter a valid PRN Number.");
+
+    if (gender.value === "")
+        return showAlert("Please select your gender.");
+
+    if (department.value === "")
+        return showAlert("Please select your department.");
+
+    if (year.value === "")
+        return showAlert("Please select your year.");
+
+    if (division.value === "")
+        return showAlert("Please select your division.");
+
+    if (password.value.length < 8)
+        return showAlert("Password must contain at least 8 characters.");
+
+    if (password.value !== confirmPassword.value)
+        return showAlert("Passwords do not match.");
+
+    if (!document.getElementById("terms").checked)
+        return showAlert("Please accept the Terms & Conditions.");
+
+    /* ===============================
+        Loading Button
+    =============================== */
+
+    registerBtn.disabled = true;
+
+    registerBtn.innerHTML = `
+        <span class="spinner-border spinner-border-sm"></span>
+        Creating Account...
+    `;
+
+    /* ===============================
+        API Object
+    =============================== */
+
+    const studentData = {
+
+        name: name.value.trim(),
+
+        email: email.value.trim().toLowerCase(),
+
+        password: password.value,
+
+        phone: phone.value,
+
+        dob: dob.value,
+
+        gender: gender.value,
+
+        role: "student",
+
+        employee_id: prn.value,
+
+        department: department.value,
+
+        qualification: null,
+
+        year: year.value,
+
+        division: division.value
+
+    };
+
+    try {
+
+        /* ===============================
+            API Call
+        =============================== */
+
+        const response = await fetch(
+            "http://localhost:5000/api/register",
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify(studentData)
+
+            }
+        );
+
+        const result = await response.json();
+
+        /* ===============================
+            Success
+        =============================== */
+
+        if (response.ok) {
+
+            showAlert(
+                "🎉 Registration Successful! Redirecting...",
+                "success"
+            );
+
+            if (result.token)
+                localStorage.setItem("token", result.token);
+
+            if (result.user)
+                localStorage.setItem(
+                    "currentUser",
+                    JSON.stringify(result.user)
+                );
+
+            if (result.id)
+                localStorage.setItem(
+                    "currentUserId",
+                    result.id
+                );
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "../student-dashboard.html";
+
+            }, 1500);
+
+        }
+
+        /* ===============================
+            Failed
+        =============================== */
+
+        else {
+
+            showAlert(
+                result.message || "Registration Failed"
+            );
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showAlert(
+            "Server connection failed. Please try again later."
+        );
+
+    }
+
+    finally {
+
+        registerBtn.disabled = false;
+
+        registerBtn.innerHTML = `
+            <i class="fa-solid fa-user-plus"></i>
+            Register Now
+        `;
+
+    }
+
+});
+name.addEventListener("blur", () => {
+
+    name.value = name.value
+        .trim()
+        .split(" ")
+        .map(word =>
+            word.charAt(0).toUpperCase() +
+            word.slice(1).toLowerCase()
+        )
+        .join(" ");
+
+});
+
+</script>
 </html>
